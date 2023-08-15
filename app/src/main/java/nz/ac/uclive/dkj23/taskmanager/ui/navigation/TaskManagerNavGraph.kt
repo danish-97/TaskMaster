@@ -13,9 +13,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.navArgument
 import kotlinx.coroutines.launch
 import nz.ac.uclive.dkj23.taskmanager.AppDrawer
 import nz.ac.uclive.dkj23.taskmanager.ui.home.HomeDestination
@@ -24,8 +26,8 @@ import nz.ac.uclive.dkj23.taskmanager.ui.calendar.CalendarDestination
 import nz.ac.uclive.dkj23.taskmanager.ui.calendar.CalendarScreen
 import nz.ac.uclive.dkj23.taskmanager.ui.task.CreateTask
 import nz.ac.uclive.dkj23.taskmanager.ui.task.CreateTaskDestination
-import nz.ac.uclive.dkj23.taskmanager.ui.task.TaskDetailDestination
-import nz.ac.uclive.dkj23.taskmanager.ui.task.TaskDetailScreen
+import nz.ac.uclive.dkj23.taskmanager.ui.task.EditTaskDestination
+import nz.ac.uclive.dkj23.taskmanager.ui.task.EditTaskScreen
 
 /**
  * Provides the Navigation graph for the application
@@ -64,6 +66,9 @@ fun TaskManagerNavHost(
                     composable(route = HomeDestination.route) {
                         HomeScreen(
                             navigateToCreateTask = { navController.navigate(CreateTaskDestination.route) },
+                            navigateToEditTask = {
+                                navController.navigate("${EditTaskDestination.route}/${it}")
+                                 },
                             coroutineScope = coroutineScope,
                             drawerState = drawerState
                         )
@@ -71,6 +76,7 @@ fun TaskManagerNavHost(
                     composable(route = CreateTaskDestination.route) {
                         CreateTask(
                             navigateBack = { navController.navigate(HomeDestination.route) },
+                            onNavigateUp = { navController.navigateUp() },
                             coroutineScope = coroutineScope,
                             drawerState = drawerState
                         )
@@ -81,8 +87,18 @@ fun TaskManagerNavHost(
                             drawerState = drawerState
                         )
                     }
-                    composable(route = TaskDetailDestination.route) {
-                        TaskDetailScreen()
+                    composable(
+                        route = EditTaskDestination.routeWithArgs,
+                        arguments = listOf(navArgument(EditTaskDestination.taskIdArgument) {
+                            type = NavType.IntType
+                        })
+                    ) {
+                        EditTaskScreen(
+                            navigateBack = { navController.navigate(HomeDestination.route) },
+                            onNavigateUp = { navController.navigateUp() },
+                            coroutineScope = coroutineScope,
+                            drawerState = drawerState
+                        )
                     }
                 }
             }

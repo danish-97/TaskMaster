@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
@@ -51,6 +52,8 @@ fun TaskManagerApp(navController: NavHostController = rememberNavController()) {
 fun TaskManagerTopBar(
     title: String,
     modifier: Modifier = Modifier,
+    canNavigateBack: Boolean,
+    navigateUp: () -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior? = null,
     coroutineScope: CoroutineScope,
     drawerState: DrawerState,
@@ -60,12 +63,21 @@ fun TaskManagerTopBar(
         modifier = modifier,
         scrollBehavior = scrollBehavior,
         navigationIcon = {
-            IconButton(onClick = { coroutineScope.launch{ drawerState.open() } }
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Menu,
-                    contentDescription = stringResource(id = R.string.menu_icon)
-                )
+            if (canNavigateBack) {
+                IconButton(onClick = navigateUp) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = stringResource(id = R.string.back_icon)
+                    )
+                }
+            } else {
+                IconButton(onClick = { coroutineScope.launch { drawerState.open() } }
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Menu,
+                        contentDescription = stringResource(id = R.string.menu_icon)
+                    )
+                }
             }
         },
     )

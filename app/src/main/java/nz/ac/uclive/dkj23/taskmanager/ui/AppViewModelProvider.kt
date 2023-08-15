@@ -6,7 +6,9 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import nz.ac.uclive.dkj23.taskmanager.TaskManagerApplication
 import nz.ac.uclive.dkj23.taskmanager.ui.task.CreateTaskViewModel
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
+import androidx.lifecycle.createSavedStateHandle
 import nz.ac.uclive.dkj23.taskmanager.ui.home.HomeViewModel
+import nz.ac.uclive.dkj23.taskmanager.ui.task.EditTaskViewModel
 
 object AppViewModelProvider {
     val Factory = viewModelFactory {
@@ -17,6 +19,13 @@ object AppViewModelProvider {
         // Initializer for CreateTaskViewModel
         initializer {
             CreateTaskViewModel(taskManagerApplication().container.tasksRepository)
+        }
+
+        initializer {
+            EditTaskViewModel(
+                this.createSavedStateHandle(),
+                taskManagerApplication().container.tasksRepository
+            )
         }
     }
 }

@@ -33,6 +33,7 @@ fun CalendarScreen(
                 title = stringResource(id = CalendarDestination.titleRes),
                 coroutineScope = coroutineScope,
                 drawerState = drawerState,
+                canNavigateBack = false
             )
         },
     ) {

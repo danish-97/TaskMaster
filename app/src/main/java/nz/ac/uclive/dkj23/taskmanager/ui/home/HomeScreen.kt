@@ -1,6 +1,8 @@
 package nz.ac.uclive.dkj23.taskmanager.ui.home
 
 import android.annotation.SuppressLint
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
@@ -76,6 +78,7 @@ object HomeDestination: NavigationDestination {
 @Composable
 fun HomeScreen(
     navigateToCreateTask: () -> Unit,
+    navigateToEditTask: (Int) -> Unit,
     coroutineScope: CoroutineScope,
     drawerState: DrawerState,
     modifier: Modifier = Modifier,
@@ -92,6 +95,7 @@ fun HomeScreen(
                 scrollBehavior = scrollBehavior,
                 coroutineScope = coroutineScope,
                 drawerState = drawerState,
+                canNavigateBack = false
             )
         },
         floatingActionButton = {
@@ -109,6 +113,7 @@ fun HomeScreen(
     ){contentPadding ->
         HomeBody(
             taskList = homeUiState.taskList,
+            onEditTask = navigateToEditTask,
             onDelete = { task -> coroutineScope.launch { viewModel.deleteTask(task) } },
             modifier = modifier
                 .padding(contentPadding)
@@ -120,6 +125,7 @@ fun HomeScreen(
 @Composable
 fun HomeBody(
     taskList: List<Task>,
+    onEditTask: (Int) -> Unit,
     onDelete: (Task) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -136,6 +142,7 @@ fun HomeBody(
         } else {
             TaskList(
                 taskList = taskList,
+                onEditTask = onEditTask,
                 onDelete = onDelete,
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_small)))
         }
@@ -144,14 +151,17 @@ fun HomeBody(
 
 @Composable
 private fun TaskList(
-    taskList: List<Task>, onDelete: (Task) -> Unit, modifier: Modifier = Modifier
+    taskList: List<Task>,
+    onEditTask: (Int) -> Unit,
+    onDelete: (Task) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier = modifier) {
         items(items = taskList, key = { it.taskId }) {item ->
             TaskCard(
                 task = item,
-                onDelete = onDelete,
-                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small))
+                onEditTask = onEditTask,
+                onDelete = onDelete
             )
         }
     }
@@ -159,7 +169,11 @@ private fun TaskList(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun TaskCard(task: Task, onDelete: (Task) -> Unit, modifier: Modifier = Modifier) {
+fun TaskCard(
+    task: Task,
+    onEditTask: (Int) -> Unit,
+    onDelete: (Task) -> Unit,
+) {
     var expanded by remember { mutableStateOf(false) }
     var isLongPressed by remember { mutableStateOf(false) }
     var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
@@ -171,36 +185,51 @@ fun TaskCard(task: Task, onDelete: (Task) -> Unit, modifier: Modifier = Modifier
             .padding(16.dp)
             .combinedClickable(
                 onClick = { expanded = !expanded },
-                onLongClick = { isLongPressed = !isLongPressed }
+                onLongClick = { isLongPressed = !isLongPressed },
             )
     ) {
         Column(
+            modifier = Modifier
+                .animateContentSize()
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .animateContentSize(animationSpec = spring()),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (isLongPressed) {
                     Icon(
                         imageVector = Icons.Filled.CheckCircle,
                         contentDescription = stringResource(id = R.string.check_symbol),
-                        modifier = Modifier.size(dimensionResource(id = R.dimen.checkmark_size)),
+                        modifier = Modifier
+                            .size(dimensionResource(id = R.dimen.checkmark_size)),
+                        )
+                    Text(
+                        text = task.name,
+                        style = MaterialTheme.typography.headlineLarge,
+                        modifier = Modifier
+                            .padding(dimensionResource(id = R.dimen.padding_small))
+                            .clip(MaterialTheme.shapes.medium)
+                            .weight(1f),
+                        overflow = TextOverflow.Ellipsis,
+                        maxLines = 1
+                    )
+                } else {
+                    Text(
+                        text = task.name,
+                        style = MaterialTheme.typography.headlineLarge,
+                        modifier = Modifier
+                            .padding(dimensionResource(id = R.dimen.padding_small))
+                            .clip(MaterialTheme.shapes.medium)
+                            .weight(1f),
                     )
                 }
-                Text(
-                    text = task.name,
-                    style = MaterialTheme.typography.headlineLarge,
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .clip(MaterialTheme.shapes.medium)
-                        .weight(1f),
-                    overflow = TextOverflow.Ellipsis,
-                    maxLines = 1
-                )
+
                 Spacer(Modifier.weight(1f))
                 if (isLongPressed) {
                     OutlinedButton(
-                        onClick = {  },
+                        onClick = { onEditTask(task.taskId) },
                         shape = MaterialTheme.shapes.small,
                         modifier = Modifier
                             .padding(dimensionResource(id = R.dimen.padding_small)),
@@ -303,6 +332,7 @@ fun MainScreenPreview() {
     TaskManagerTheme {
         HomeScreen(
             navigateToCreateTask = {},
+            navigateToEditTask = {},
             rememberCoroutineScope(),
             rememberDrawerState(initialValue = DrawerValue.Closed))
     }
