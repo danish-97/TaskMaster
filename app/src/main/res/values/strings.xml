@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">TaskManager</string>
+    <string name="create_task_title">Create Task</string>
+    <string name="calendar_title">Calendar</string>
+    <string name="task_details_title">Task Details</string>
+    <string name="no_task_description">No current tasks. \nTap + to add.</string>
+    <string name="task_name_req">Task Name*</string>
+    <string name="task_description">Task Description</string>
+    <string name="task_due_date_req">Due Date*</string>
+    <string name="task_priority">Priority</string>
+    <string name="required_fields">*required fields</string>
+    <string name="create_task_action">Create Task</string>
+    <string name="menu_icon">Menu Icon</string>
+    <string name="dropdown_icon">Dropdown Icon</string>
+    <string name="date_icon">Date Icon</string>
+    <string name="delete_button">Delete</string>
+    <string name="edit_button">Edit</string>
+    <string name="check_symbol">Check Mark Symbol</string>
+    <string name="attention">Attention</string>
+    <string name="delete_question">Are you sure you want to delete?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+</resources>
