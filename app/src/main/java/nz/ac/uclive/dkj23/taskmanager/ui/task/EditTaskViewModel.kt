@@ -55,8 +55,13 @@ class EditTaskViewModel(
 
     private fun validateInput(uiState: TaskDetails = taskUiState.taskDetails): Boolean {
         return with(uiState) {
-            name.isNotBlank()
+            name.isNotBlank() && isValidText(name) && (isValidText(description) || description.isBlank())
+                    && name.length <= 36 && description.length <= 256
         }
+    }
+
+    private fun isValidText(text: String): Boolean {
+        return text.matches(Regex("(?=.*[a-zA-Z])[a-zA-Z0-9 ]+"))
     }
 
 }

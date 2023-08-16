@@ -33,4 +33,6 @@
     <string name="high">High</string>
     <string name="medium">Medium</string>
     <string name="low">Low</string>
+    <string name="character_limit">Limit: %1s/%2d</string>
+    <string name="validation_error">Error</string>
 </resources>

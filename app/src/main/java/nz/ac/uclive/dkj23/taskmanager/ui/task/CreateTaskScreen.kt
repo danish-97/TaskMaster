@@ -13,10 +13,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
@@ -212,14 +212,52 @@ fun TaskInputForm(
             label = { Text(stringResource(id = R.string.task_name_req)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
-            singleLine = true
+            singleLine = true,
+            isError = !isValidText(taskDetails.name) || taskDetails.name.length > 36,
+            supportingText = {
+                if (taskDetails.name.length > 36) {
+                    Text(
+                        text = stringResource(id = R.string.character_limit, taskDetails.name.length, 36),
+                        modifier = Modifier.fillMaxWidth(),
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            },
+            trailingIcon = {
+                if (taskDetails.name.length > 36 || !isValidText(taskDetails.name)) {
+                    Icon(
+                        imageVector = Icons.Filled.Warning,
+                        contentDescription = stringResource(id = R.string.validation_error),
+                        tint = MaterialTheme.colorScheme.error
+                    )
+                }
+            }
         )
         OutlinedTextField(
             value = taskDetails.description,
             onValueChange = { onValueChange(taskDetails.copy(description = it)) },
             label = { Text(stringResource(id = R.string.task_description)) },
             modifier = Modifier.fillMaxWidth(),
-            singleLine = false
+            singleLine = false,
+            isError = !isValidText(taskDetails.description) || taskDetails.description.length > 256,
+            supportingText = {
+                if (taskDetails.description.length > 256) {
+                    Text(
+                        text = stringResource(id = R.string.character_limit, taskDetails.description.length, 256),
+                        modifier = Modifier.fillMaxWidth(),
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            },
+            trailingIcon = {
+                if (taskDetails.description.length > 256 || !isValidText(taskDetails.description)) {
+                    Icon(
+                        imageVector = Icons.Filled.Warning,
+                        contentDescription = stringResource(id = R.string.validation_error),
+                        tint = MaterialTheme.colorScheme.error
+                    )
+                }
+            }
         )
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -282,7 +320,10 @@ fun TaskInputForm(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+fun isValidText(text: String): Boolean {
+    return text.isEmpty() || text.matches(Regex("(?=.*[a-zA-Z])[a-zA-Z0-9 ]+"))
+}
+
 @Preview (showBackground = true)
 @Composable
 fun CreateTaskPreview() {
