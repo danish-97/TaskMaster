@@ -5,12 +5,18 @@ import android.app.DatePickerDialog
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Button
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
@@ -81,6 +87,7 @@ fun CreateTask(
                     navigateBack()
                 }
             },
+            canShare = false,
             modifier = Modifier
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState())
@@ -102,8 +109,12 @@ fun CreateTaskBody(
     taskUiState: TaskUiState,
     onTaskValueChange: (TaskDetails) -> Unit,
     onCreateClick: () -> Unit,
+    canShare: Boolean,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
+    val shareTaskString = stringResource(id = R.string.share_task)
+
     Column(
         modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_large))
@@ -113,13 +124,42 @@ fun CreateTaskBody(
             onValueChange = onTaskValueChange,
             modifier = Modifier.fillMaxWidth()
         )
-        Button(
-            onClick = onCreateClick,
-            enabled = taskUiState.isEntryValid,
-            shape = MaterialTheme.shapes.small,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text(text = stringResource(id = R.string.create_task_action))
+        Row {
+            if (canShare) {
+                Button(
+                    onClick = {
+                        shareTask(
+                            task = taskUiState.taskDetails.toTask(),
+                            context = context,
+                            shareTaskString = shareTaskString
+                        )
+                    },
+                    shape = MaterialTheme.shapes.small,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Share,
+                        contentDescription = stringResource(id = R.string.share_task),
+                        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.padding_small))
+                    )
+                    Text(text = stringResource(id = R.string.share_task))
+                }
+                Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium)))
+            }
+            Button(
+                onClick = onCreateClick,
+                enabled = taskUiState.isEntryValid,
+                shape = MaterialTheme.shapes.small,
+                modifier = Modifier.weight(1f)
+            ) {
+                Icon(
+                    imageVector = if (canShare) Icons.Filled.Edit else Icons.Filled.Add,
+                    contentDescription = stringResource(id = R.string.share_task),
+                    modifier = Modifier.padding(end = dimensionResource(id = R.dimen.padding_small))
+                )
+                Text(text = if (canShare) stringResource(id = R.string.update_task_action)
+                else stringResource(id = R.string.create_task_action))
+            }
         }
     }
 }
@@ -178,7 +218,7 @@ fun TaskInputForm(
         )
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = selectedDate,
+            value = taskDetails.dueDate,
             onValueChange = { },
             label = { Text(stringResource(id = R.string.task_due_date_req)) },
             enabled = enabled,

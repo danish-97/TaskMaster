@@ -18,6 +18,10 @@ interface TasksRepository {
     fun getTaskStream(taskId: Int): Flow<Task>
 
     /**
+     * Retrieve tasks by date
+     */
+    fun getTasksByDate(dueDate: String): Flow<List<Task>>
+    /**
      * Add task in the data source
      */
     suspend fun addTask(task: Task)

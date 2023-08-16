@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import nz.ac.uclive.dkj23.taskmanager.model.Task
 import nz.ac.uclive.dkj23.taskmanager.model.TasksRepository
-import nz.ac.uclive.dkj23.taskmanager.ui.task.TaskDetails
 
 /**
  * ViewModel to retrieve all the tasks in the Room database

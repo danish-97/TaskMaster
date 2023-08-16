@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TaskMaster</string>
     <string name="create_task_title">Create Task</string>
+    <string name="home">Home</string>
     <string name="calendar_title">Calendar</string>
     <string name="task_details_title">Task Details</string>
     <string name="no_task_description">No current tasks. \nTap + to add.</string>
@@ -10,6 +11,9 @@
     <string name="task_priority">Priority</string>
     <string name="required_fields">*required fields</string>
     <string name="create_task_action">Create Task</string>
+    <string name="update_task_action">Edit Task</string>
+    <string name="home_icon">Home Icon</string>
+    <string name="calendar_icon">Calendar Icon</string>
     <string name="menu_icon">Menu Icon</string>
     <string name="back_icon">Back Icon</string>
     <string name="dropdown_icon">Dropdown Icon</string>
@@ -21,5 +25,9 @@
     <string name="delete_question">Are you sure you want to delete?</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
+    <string name="close">Close</string>
     <string name="checkmark_animation">Checkmark Animation</string>
+    <string name="share_task">Share Task</string>
+    <string name="calendar_popup">Tasks for %1s</string>
+    <string name="no_calendar_tasks">There are no tasks due on this date</string>
 </resources>

@@ -51,7 +51,6 @@ fun TaskManagerNavHost(
                 route = currentRoute,
                 navigateToHome = { navController.navigate(HomeDestination.route) },
                 navigateToCalendar = { navController.navigate(CalendarDestination.route) },
-                navigateToCreateTask = { navController.navigate(CreateTaskDestination.route) }
             ) { coroutineScope.launch { drawerState.close() } }
         }
     ) {

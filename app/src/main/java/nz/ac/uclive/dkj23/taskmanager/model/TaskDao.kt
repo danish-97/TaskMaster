@@ -21,6 +21,9 @@ interface TaskDao {
     @Query("SELECT * from task WHERE taskId = :taskId")
     fun getTask(taskId: Int): Flow<Task>
 
+    @Query("SELECT * from task WHERE dueDate = :dueDate")
+    fun getTaskByDate(dueDate: String): Flow<List<Task>>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(task: Task)
 

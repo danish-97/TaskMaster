@@ -77,4 +77,8 @@ dependencies {
     implementation("androidx.room:room-ktx:2.5.2")
     ksp("androidx.room:room-compiler:2.5.2")
 
+    // Calendar
+    implementation("com.himanshoe:kalendar:1.3.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+
 }

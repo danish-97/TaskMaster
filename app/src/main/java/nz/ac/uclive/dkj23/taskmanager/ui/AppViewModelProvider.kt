@@ -7,6 +7,7 @@ import nz.ac.uclive.dkj23.taskmanager.TaskManagerApplication
 import nz.ac.uclive.dkj23.taskmanager.ui.task.CreateTaskViewModel
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import androidx.lifecycle.createSavedStateHandle
+import nz.ac.uclive.dkj23.taskmanager.ui.calendar.CalendarViewModel
 import nz.ac.uclive.dkj23.taskmanager.ui.home.HomeViewModel
 import nz.ac.uclive.dkj23.taskmanager.ui.task.EditTaskViewModel
 
@@ -24,6 +25,12 @@ object AppViewModelProvider {
         initializer {
             EditTaskViewModel(
                 this.createSavedStateHandle(),
+                taskManagerApplication().container.tasksRepository
+            )
+        }
+
+        initializer {
+            CalendarViewModel(
                 taskManagerApplication().container.tasksRepository
             )
         }
