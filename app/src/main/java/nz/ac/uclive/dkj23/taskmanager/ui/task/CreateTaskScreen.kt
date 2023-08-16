@@ -174,7 +174,12 @@ fun TaskInputForm(
 ) {
     // Variables required for the dropdown menu
     var expanded by remember { mutableStateOf(false) }
-    val priorityList = listOf("-", "High", "Medium", "Low")
+    val priorityList = listOf(
+        "-",
+        stringResource(id = R.string.high),
+        stringResource(id = R.string.medium),
+        stringResource(id = R.string.low)
+    )
     var selectedItem by remember { mutableStateOf(priorityList[0]) }
 
     // Variables required for the date-picker popup

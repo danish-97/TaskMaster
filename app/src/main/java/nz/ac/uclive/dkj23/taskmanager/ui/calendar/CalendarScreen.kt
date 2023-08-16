@@ -127,8 +127,6 @@ fun TaskListDialogue(
     LaunchedEffect(selectedDate) {
         viewModel.updateTasksByDate(selectedDate.toString())
     }
-    println(tasksForSelectedDate)
-
 
     AlertDialog(
         onDismissRequest = { /*Do Nothing*/ },

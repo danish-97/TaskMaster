@@ -30,4 +30,7 @@
     <string name="share_task">Share Task</string>
     <string name="calendar_popup">Tasks for %1s</string>
     <string name="no_calendar_tasks">There are no tasks due on this date</string>
+    <string name="high">High</string>
+    <string name="medium">Medium</string>
+    <string name="low">Low</string>
 </resources>
