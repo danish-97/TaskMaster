@@ -35,4 +35,10 @@
     <string name="low">Low</string>
     <string name="character_limit">Limit: %1s/%2d</string>
     <string name="validation_error">Error</string>
+    <string name="validation_message">
+        Only letters and numbers are allowed. If using a number, then a letter must be included.
+    </string>
+    <string name="task_created_toast">Task Created</string>
+    <string name="task_updated_toast">Task Updated</string>
+    <string name="task_deleted_toast">Task Deleted</string>
 </resources>

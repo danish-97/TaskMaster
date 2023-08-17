@@ -47,6 +47,7 @@ import kotlinx.coroutines.launch
 import nz.ac.uclive.dkj23.taskmanager.R
 import nz.ac.uclive.dkj23.taskmanager.TaskManagerTopBar
 import nz.ac.uclive.dkj23.taskmanager.ui.AppViewModelProvider
+import nz.ac.uclive.dkj23.taskmanager.ui.home.showToast
 import nz.ac.uclive.dkj23.taskmanager.ui.navigation.NavigationDestination
 import nz.ac.uclive.dkj23.taskmanager.ui.theme.TaskManagerTheme
 import java.text.SimpleDateFormat
@@ -114,6 +115,8 @@ fun CreateTaskBody(
 ) {
     val context = LocalContext.current
     val shareTaskString = stringResource(id = R.string.share_task)
+    val message = if (canShare) stringResource(id = R.string.task_updated_toast)
+                    else stringResource(id = R.string.task_created_toast)
 
     Column(
         modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium)),
@@ -147,7 +150,10 @@ fun CreateTaskBody(
                 Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium)))
             }
             Button(
-                onClick = onCreateClick,
+                onClick = {
+                    showToast(context, message)
+                    onCreateClick()
+                          },
                 enabled = taskUiState.isEntryValid,
                 shape = MaterialTheme.shapes.small,
                 modifier = Modifier.weight(1f)
@@ -221,6 +227,12 @@ fun TaskInputForm(
                         modifier = Modifier.fillMaxWidth(),
                         color = MaterialTheme.colorScheme.error
                     )
+                } else if (!isValidText(taskDetails.name)) {
+                    Text(
+                        text = stringResource(id = R.string.validation_message),
+                        modifier = Modifier.fillMaxWidth(),
+                        color = MaterialTheme.colorScheme.error
+                    )
                 }
             },
             trailingIcon = {
@@ -244,6 +256,12 @@ fun TaskInputForm(
                 if (taskDetails.description.length > 256) {
                     Text(
                         text = stringResource(id = R.string.character_limit, taskDetails.description.length, 256),
+                        modifier = Modifier.fillMaxWidth(),
+                        color = MaterialTheme.colorScheme.error
+                    )
+                } else if (!isValidText(taskDetails.description)) {
+                    Text(
+                        text = stringResource(id = R.string.validation_message),
                         modifier = Modifier.fillMaxWidth(),
                         color = MaterialTheme.colorScheme.error
                     )

@@ -36,4 +36,8 @@
     <string name="low">Lav</string>
     <string name="character_limit">Grænse: %1s/%2d</string>
     <string name="validation_error">Fejl</string>
+    <string name="validation_message">Kun bogstaver og tal er tilladt. Hvis der bruges et tal, skal der også være et bogstav med</string>
+    <string name="task_created_toast">Opgave Oprettet</string>
+    <string name="task_updated_toast">Opgave Opdateret</string>
+    <string name="task_deleted_toast">Opgave Slettet</string>
 </resources>

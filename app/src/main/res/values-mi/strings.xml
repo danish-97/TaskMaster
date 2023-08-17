@@ -36,4 +36,8 @@
     <string name="low">Iti</string>
     <string name="character_limit">Whakararuraru: %1s/%2d</string>
     <string name="validation_error">Hapa</string>
+    <string name="validation_message">Ko ngā reta me ngā tau anake te whakaae. Ki te whakamahi i tētahi tau, me whakaurua he reta.</string>
+    <string name="task_created_toast">Mahi Kua Waihangahia</string>
+    <string name="task_updated_toast">Mahi Kua Whakaputaina</string>
+    <string name="task_deleted_toast">Mahi Kua Muku</string>
 </resources>

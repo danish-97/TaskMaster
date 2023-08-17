@@ -1,6 +1,8 @@
 package nz.ac.uclive.dkj23.taskmanager.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -49,6 +51,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -178,6 +181,10 @@ fun TaskCard(
     var isLongPressed by remember { mutableStateOf(false) }
     var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
 
+    // Variables for the toast message
+    val context = LocalContext.current
+    val message = stringResource(id = R.string.task_deleted_toast)
+
     Card (
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier
@@ -254,6 +261,7 @@ fun TaskCard(
                             onDeleteConfirm = {
                                 deleteConfirmationRequired = false
                                 onDelete(task)
+                                showToast(context, message)
                             },
                             onDeleteCancel = { deleteConfirmationRequired = false },
                             modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium))
@@ -323,6 +331,11 @@ fun DeleteConfirmationDialog(
                 Text(text = stringResource(R.string.yes))
             }
         })
+}
+
+
+fun showToast(context: Context, message: String) {
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 
 @Preview(showBackground = true)
