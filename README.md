@@ -1,92 +1,33 @@
-# TaskMaster
+**TaskMaster: A Task Management Application**
 
+**Purpose:**
+TaskMaster is a task management application designed to help users organize their tasks, deadlines, and priorities effectively. It aims to streamline task management and increase productivity by providing users with a centralized platform to create, track, and manage tasks. Targeting individuals who seek better task organization, TaskMaster offers a user-friendly interface to input tasks, set due dates, and prioritize activities. By visualizing tasks and deadlines, users can make informed decisions, allocate time efficiently, and achieve their goals with improved time management.
 
+**Development Process:**
+1. Initial Setup and Navigation: Chose Jetpack Compose for modern UI development and established a navigation system using a NavHost. Created the main screen layout, integrated an app drawer for navigation, and incorporated a top bar for consistent layout design.
+2. Task Creation: Implemented functionality to create tasks with name, description, due date, and priority. Integrated user-friendly components like TextFields for input and buttons for actions like editing and deleting tasks.
+3. Persistence with Room Database: Integrated Room database to store and retrieve task data, allowing users to access their tasks across app sessions and device reboots.
+4. Task display:  Displayed tasks in a list using Jetpack Compose's LazyColumn, providing a dynamic and responsive interface. Implemented long press functionality on each task card which will show the edit and delete task options.
+5. State Management with ViewModel: Utilized ViewModel architecture for managing UI states, data persistence, and business logic. Enabled data sharing between different screens while ensuring data consistency.
+6. Task Details and Editing: Developed a task details screen to view and edit task details. Added a share button which will allow to share the task.
+7. Calendar Integration: Added a calendar view to visualize tasks based on due dates, enhancing user awareness of upcoming deadlines. Tasks are color-coded based on priority, providing a quick overview.
+8. Alert Dialog for Task Details: Created an alert dialog to display task details when clicking on a calendar date. Utilized Jetpack Compose's AlertDialog for a visually appealing and functional display.
+9. Toast messages and Validation: Added toast messages to creating, editing and deleting the tasks. Also added validation to the text fields for task creation and editing.
 
-## Getting started
+**Grade-Bearing Requirements:**
+- Multi-Screen Setup: Designed main screen, task creation screen, task editing screen and calendar view to fulfill the multi-screen requirement.
+- Invoking: Implemented a Share button which can share a task to different apps.
+- Floating Action Button: Added a floating action button for easy task creation, enhancing user interaction.
+- Dialogs and Toasts: Utilized AlertDialog to display task details and implemented toast messages for user notifications.
+- String Resource Usage: Employed string resources for all static text, facilitating localization and internationalization.
+- Supports the languages @Danish and Maori
+- Use LazyColumn to display the list of tasks in the home page
+- Use OutlinedTextFields, Buttons, ExposedDropdowns, DropdownItems, Cards, and more for various user interactions.
+- Responsive UI Design: Ensured all UI components adapt to both portrait and landscape orientations, providing a consistent experience.
+- LiveData Integration: Utilized LiveData or StateFlow for managing UI states and real-time updates, enhancing data consistency.
+- Animation and User Interaction: Enhanced user experience by adding animations for transitions and interactions, making the app engaging.
+- Room Database Usage: Integrated Room database for efficient task data storage, retrieval, and management.
+- Navigation and Intents: Implemented navigation between screens and enabled users to share their tasks.
+- Top App Bar and Drawer: Designed a top app bar and integrated an app drawer for seamless menu access and navigation .
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://eng-git.canterbury.ac.nz/dkj23/taskmaster.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://eng-git.canterbury.ac.nz/dkj23/taskmaster/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+TaskMaster aims to simplify task management for users by providing a feature-rich application that covers task creation, organization, and visualization. The app's development journey encompassed setting up navigation, UI design, data storage, real-time updates, and user interaction. With TaskMaster, users can tackle their to-do lists effectively, meet deadlines, and achieve their objectives with improved task management.
