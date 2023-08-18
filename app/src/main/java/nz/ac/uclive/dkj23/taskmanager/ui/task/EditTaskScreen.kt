@@ -8,7 +8,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.CoroutineScope
@@ -20,7 +19,7 @@ import nz.ac.uclive.dkj23.taskmanager.ui.AppViewModelProvider
 import nz.ac.uclive.dkj23.taskmanager.ui.navigation.NavigationDestination
 
 object EditTaskDestination: NavigationDestination {
-    override val route = "task_details"
+    override val route = "edit_task"
     override val titleRes = R.string.task_details_title
     const val taskIdArgument = "taskId"
     val routeWithArgs = "$route/{$taskIdArgument}"

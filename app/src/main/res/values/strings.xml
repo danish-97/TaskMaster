@@ -3,7 +3,7 @@
     <string name="create_task_title">Create Task</string>
     <string name="home">Home</string>
     <string name="calendar_title">Calendar</string>
-    <string name="task_details_title">Task Details</string>
+    <string name="task_details_title">Edit Task</string>
     <string name="no_task_description">No current tasks. \nTap + to add.</string>
     <string name="task_name_req">Task Name*</string>
     <string name="task_description">Task Description</string>
