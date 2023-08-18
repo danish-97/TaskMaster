@@ -1,8 +1,6 @@
 package nz.ac.uclive.dkj23.taskmanager.ui.calendar
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,7 +14,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -74,7 +71,7 @@ fun CalendarScreen(
         )
     }
 
-    var selectedDate by rememberSaveable { mutableStateOf<LocalDate?>(null) }
+    var selectedDate by remember { mutableStateOf<LocalDate?>(null) }
     var showDialog by rememberSaveable { mutableStateOf(false) }
 
     Scaffold(
@@ -103,10 +100,13 @@ fun CalendarScreen(
         )
         if (showDialog) {
             selectedDate?.let {
+                // Access the tasksByDate state flow
+                val tasksByDate = calendarViewModel.tasksByDate.collectAsState().value
+                val tasksForSelectedDate = tasksByDate[selectedDate.toString()] ?: emptyList()
                 TaskListDialogue(
-                    selectedDate = it,
+                    it,
+                    tasksForSelectedDate,
                     onClose = { showDialog = false },
-                    viewModel = calendarViewModel
                 )
             }
         }
@@ -116,17 +116,9 @@ fun CalendarScreen(
 @Composable
 fun TaskListDialogue(
     selectedDate: LocalDate,
+    tasksForSelectedDate: List<Task>,
     onClose: () -> Unit,
-    viewModel: CalendarViewModel
 ) {
-
-    // Access the tasksByDate state flow
-    val tasksByDate = viewModel.tasksByDate.collectAsState().value
-    val tasksForSelectedDate = tasksByDate[selectedDate.toString()] ?: emptyList()
-
-    LaunchedEffect(selectedDate) {
-        viewModel.updateTasksByDate(selectedDate.toString())
-    }
 
     AlertDialog(
         onDismissRequest = { /*Do Nothing*/ },
@@ -139,17 +131,14 @@ fun TaskListDialogue(
         },
         modifier = Modifier.fillMaxWidth(),
         text = {
-
-            Column {
-                Box {
-                    if (tasksForSelectedDate.isNotEmpty()) {
-                        for (task in tasksForSelectedDate) {
-                            Text(text = task.name, modifier = Modifier.fillMaxWidth())
-                        }
-                    } else {
-                        Text(text = stringResource(id = R.string.no_calendar_tasks))
+            if (tasksForSelectedDate.isNotEmpty()) {
+                LazyColumn {
+                    items(tasksForSelectedDate) {task ->
+                        Text(text = task.name, modifier = Modifier.fillMaxWidth())
                     }
                 }
+            } else {
+                Text(text = stringResource(id = R.string.no_calendar_tasks))
             }
         }
     )
