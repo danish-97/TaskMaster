@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">TaskMaster</string>
+    <string name="create_task_title">Create Task</string>
+    <string name="home">Home</string>
+    <string name="calendar_title">Calendar</string>
+    <string name="task_details_title">Edit Task</string>
+    <string name="no_task_description">No current tasks. \nTap + to add.</string>
+    <string name="task_name_req">Task Name*</string>
+    <string name="task_description">Task Description</string>
+    <string name="task_due_date_req">Due Date*</string>
+    <string name="task_priority">Priority</string>
+    <string name="required_fields">*required fields</string>
+    <string name="create_task_action">Create Task</string>
+    <string name="update_task_action">Edit Task</string>
+    <string name="home_icon">Home Icon</string>
+    <string name="calendar_icon">Calendar Icon</string>
+    <string name="menu_icon">Menu Icon</string>
+    <string name="back_icon">Back Icon</string>
+    <string name="dropdown_icon">Dropdown Icon</string>
+    <string name="date_icon">Date Icon</string>
+    <string name="delete_button">Delete</string>
+    <string name="edit_button">Edit</string>
+    <string name="check_symbol">Check Mark Symbol</string>
+    <string name="attention">Attention</string>
+    <string name="delete_question">Are you sure you want to delete?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="close">Close</string>
+    <string name="checkmark_animation">Checkmark Animation</string>
+    <string name="share_task">Share Task</string>
+    <string name="calendar_popup">Tasks for %1s</string>
+    <string name="no_calendar_tasks">There are no tasks due on this date</string>
+    <string name="high">High</string>
+    <string name="medium">Medium</string>
+    <string name="low">Low</string>
+    <string name="character_limit">Limit: %1s/%2d</string>
+    <string name="validation_error">Error</string>
+    <string name="validation_message">
+        Only letters and numbers are allowed. If using a number, then a letter must be included.
+    </string>
+    <string name="task_created_toast">Task Created</string>
+    <string name="task_updated_toast">Task Updated</string>
+    <string name="task_deleted_toast">Task Deleted</string>
+</resources>

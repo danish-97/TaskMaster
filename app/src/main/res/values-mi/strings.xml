@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kaiwhakahaere Mahi</string>
+    <string name="create_task_title">Waihanga Mahi</string>
+    <string name="home">Kāinga</string>
+    <string name="calendar_title">Maramataka</string>
+    <string name="task_details_title">Taipitopito Mahi</string>
+    <string name="no_task_description">Kāore he mahi ā nāianei. \nPāwhiritia te + ki te tāpiri.</string>
+    <string name="task_name_req">Ingoa Mahi*</string>
+    <string name="task_description">Whakaahua Mahi</string>
+    <string name="task_due_date_req">Rā Whakakapi*</string>
+    <string name="task_priority">Nui</string>
+    <string name="required_fields">*ngā āpure e whai ake nei</string>
+    <string name="create_task_action">Waihangahia Mahi</string>
+    <string name="update_task_action">Whakaputaina Mahi</string>
+    <string name="home_icon">Aho Kāinga</string>
+    <string name="calendar_icon">Aho Maramataka</string>
+    <string name="menu_icon">Aho Whārangi</string>
+    <string name="back_icon">Aho Hoki</string>
+    <string name="dropdown_icon">Aho Kōwhiringa</string>
+    <string name="date_icon">Aho Rā</string>
+    <string name="delete_button">Muku</string>
+    <string name="edit_button">Whakatika</string>
+    <string name="check_symbol">Tohu Mati</string>
+    <string name="attention">Whakapau Kaha</string>
+    <string name="delete_question">E whakapau kaha ana koe ka muku?</string>
+    <string name="no">Kao</string>
+    <string name="yes">Āe</string>
+    <string name="close">Katia</string>
+    <string name="checkmark_animation">Whakahaere Tohu Mati</string>
+    <string name="share_task">Whakarite Mahi</string>
+    <string name="calendar_popup">Ngā Mahi mō %1s</string>
+    <string name="no_calendar_tasks">Kāore he mahi e whakakapi ana i tēnei rā</string>
+    <string name="high">Nui</string>
+    <string name="medium">Waenga</string>
+    <string name="low">Iti</string>
+    <string name="character_limit">Whakararuraru: %1s/%2d</string>
+    <string name="validation_error">Hapa</string>
+    <string name="validation_message">Ko ngā reta me ngā tau anake te whakaae. Ki te whakamahi i tētahi tau, me whakaurua he reta.</string>
+    <string name="task_created_toast">Mahi Kua Waihangahia</string>
+    <string name="task_updated_toast">Mahi Kua Whakaputaina</string>
+    <string name="task_deleted_toast">Mahi Kua Muku</string>
+</resources>

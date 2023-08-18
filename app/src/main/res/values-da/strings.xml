@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OpgaveMester</string>
+    <string name="create_task_title">Opret Opgave</string>
+    <string name="home">Hjem</string>
+    <string name="calendar_title">Kalender</string>
+    <string name="task_details_title">Opgave Detaljer</string>
+    <string name="no_task_description">Ingen nuværende opgaver. \nTryk på + for at tilføje.</string>
+    <string name="task_name_req">Opgavenavn*</string>
+    <string name="task_description">Opgavebeskrivelse</string>
+    <string name="task_due_date_req">Forfaldsdato*</string>
+    <string name="task_priority">Prioritet</string>
+    <string name="required_fields">*obligatoriske felter</string>
+    <string name="create_task_action">Opret Opgave</string>
+    <string name="update_task_action">Rediger Opgave</string>
+    <string name="home_icon">Hjemikon</string>
+    <string name="calendar_icon">Kalenderikon</string>
+    <string name="menu_icon">Menuikon</string>
+    <string name="back_icon">Tilbageikon</string>
+    <string name="dropdown_icon">Dropdown-ikon</string>
+    <string name="date_icon">Datoomarkering</string>
+    <string name="delete_button">Slet</string>
+    <string name="edit_button">Rediger</string>
+    <string name="check_symbol">Tjekmarkeringssymbol</string>
+    <string name="attention">Opmærksomhed</string>
+    <string name="delete_question">Er du sikker på, at du vil slette?</string>
+    <string name="no">Nej</string>
+    <string name="yes">Ja</string>
+    <string name="close">Luk</string>
+    <string name="checkmark_animation">Tjekmarkering Animation</string>
+    <string name="share_task">Del Opgave</string>
+    <string name="calendar_popup">Opgaver for %1s</string>
+    <string name="no_calendar_tasks">Der er ingen opgaver, der forfalder på denne dato</string>
+    <string name="high">Høj</string>
+    <string name="medium">Medium</string>
+    <string name="low">Lav</string>
+    <string name="character_limit">Grænse: %1s/%2d</string>
+    <string name="validation_error">Fejl</string>
+    <string name="validation_message">Kun bogstaver og tal er tilladt. Hvis der bruges et tal, skal der også være et bogstav med</string>
+    <string name="task_created_toast">Opgave Oprettet</string>
+    <string name="task_updated_toast">Opgave Opdateret</string>
+    <string name="task_deleted_toast">Opgave Slettet</string>
+</resources>
